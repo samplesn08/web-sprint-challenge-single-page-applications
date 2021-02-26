@@ -3,12 +3,36 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
 import pizza from './images/Pizza.jpg';
 import pizzaPeople from './images/pizza-people.jpg';
+import gsap from 'gsap';
 import Form from './Form';
 
 const H1 = styled.h1`
   color: crimson;
   font-size: 3rem;
 `;
+
+const tl = gsap.timeline({ paused: true, reversed: true });
+
+tl.to('.main-img', 1, {
+  width: '60%',
+  ease: 'power2.easeOut'
+}, '>-0.5').to('nav', 1, {
+  height: '100%',
+  ease: 'power2.easeOut'
+}, '>-0.5'
+).fromTo('.open', 0.5, {
+  opacity: 0,
+  x: 50,
+  ease: 'power2.easeOut'
+}, {
+  opacity: 1,
+  x: 0,
+  }
+);
+
+function toggleTween(tween) {
+  tween.reversed() ? tween.play() : tween.reverse();
+}
 
 const App = () => {
   return (
@@ -18,8 +42,8 @@ const App = () => {
           <div className="closed">
             <H1>Lambda Eats</H1>
             <Router>
-              <Link to='/' style={{textDecoration: 'none', color: 'crimson'}}>Home</Link>
-              <Link to='/pizza' style={{textDecoration: 'none', color: 'crimson'}}>Pizza?</Link>
+              <Link onClick={() => toggleTween(tl)} to='/' style={{textDecoration: 'none', color: 'crimson'}}>Home</Link>
+              <Link onClick={() => toggleTween(tl)} className='openForm' to='/pizza' style={{textDecoration: 'none', color: 'crimson'}}>Hungry?</Link>
             </Router>
           </div>
           <div className="open">
