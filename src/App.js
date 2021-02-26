@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import styled from 'styled-components';
 import pizza from './images/Pizza.jpg';
@@ -11,31 +11,36 @@ const H1 = styled.h1`
   font-size: 3rem;
 `;
 // gsap animations will not work in Cypress window, but work fine in browser
-const tl = gsap.timeline({ paused: true, reversed: true });
-
-tl.to('.main-img', 1, {
-  width: '60%',
-  ease: 'power2.easeOut'
-}, '>-0.5'
-).to('nav', 1, {
-  height: '100%',
-  ease: 'power2.easeOut'
-}, '>-0.5'
-).fromTo('.open', 0.5, {
-  opacity: 0,
-  x: 50,
-  ease: 'power2.easeOut'
-}, {
-  opacity: 1,
-  x: 0,
-  }
-);
-
-function toggleTween(tween) {
-  tween.reversed() ? tween.play() : tween.reverse();
-}
 
 const App = () => {
+  const tl = gsap.timeline({ paused: true, reversed: true });
+  useEffect(() => {
+    
+
+    tl.to('.main-img', 1, {
+      width: '60%',
+      ease: 'power2.easeOut'
+    }, '>-0.5'
+    ).to('nav', 1, {
+      height: '100%',
+      ease: 'power2.easeOut'
+    }, '>-0.5'
+    ).fromTo('.open', 0.5, {
+      opacity: 0,
+      x: 50,
+      ease: 'power2.easeOut'
+    }, {
+      opacity: 1,
+      x: 0,
+      }
+    );
+
+    
+
+  }, [])
+  function toggleTween(tween) {
+      tween.reversed() ? tween.play() : tween.reverse();
+    }
   return (
     <>
       <header>
