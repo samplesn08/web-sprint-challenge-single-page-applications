@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as yup from 'yup';
+import gsap from 'gsap';
 import React, { useState, useEffect } from 'react';
 
 const schema = yup.object().shape({

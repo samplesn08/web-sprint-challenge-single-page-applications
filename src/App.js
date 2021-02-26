@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import styled from 'styled-components';
 import pizza from './images/Pizza.jpg';
 import pizzaPeople from './images/pizza-people.jpg';
@@ -16,7 +16,8 @@ const tl = gsap.timeline({ paused: true, reversed: true });
 tl.to('.main-img', 1, {
   width: '60%',
   ease: 'power2.easeOut'
-}, '>-0.5').to('nav', 1, {
+}, '>-0.5'
+).to('nav', 1, {
   height: '100%',
   ease: 'power2.easeOut'
 }, '>-0.5'
