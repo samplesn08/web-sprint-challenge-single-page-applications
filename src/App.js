@@ -10,7 +10,7 @@ const H1 = styled.h1`
   color: crimson;
   font-size: 3rem;
 `;
-
+// gsap animations will not work in Cypress window, but work fine in browser
 const tl = gsap.timeline({ paused: true, reversed: true });
 
 tl.to('.main-img', 1, {
